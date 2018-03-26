@@ -46,6 +46,8 @@ public class Cannon : MonoBehaviour
     public float EmptyEndY;
     public float HitEndY;
 
+	public bool StaticHitStall;
+	public float StaticStallTime;
     public float StallTime;
 
     public float stallMinimumVelocity;
@@ -469,11 +471,20 @@ public class Cannon : MonoBehaviour
                 //If the speed of the hit exceeds the threshold, then start stallign on hit
                 if (Mathf.Abs(ball.velocity.x) > stallMinimumVelocity)
                 {
-                    //Set a stall time
-                    StallTime = Mathf.Abs(ball.velocity.x) * (hitStallMultiplier);
+					if (StaticHitStall) {
+						//Set a stall time
+						StallTime = StaticStallTime;
 
-                    //Stall the ball too
-                    ball.StallTime = Mathf.Abs(ball.velocity.x) * (hitStallMultiplier);
+						//Stall the ball too
+						ball.StallTime = StaticStallTime;
+					} else {
+						//Set a stall time
+						StallTime = Mathf.Abs (ball.velocity.x) * (hitStallMultiplier);
+
+						//Stall the ball too
+						ball.StallTime = Mathf.Abs (ball.velocity.x) * (hitStallMultiplier);
+					}
+                    
                 }
 
                 //Begin the retraction process of the cannon
