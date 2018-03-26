@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Projectile
   - Cannon
+  - Ball
+  - VerticalWall
+  - HorizontalWall
   layers:
   - Default
   - TransparentFX
